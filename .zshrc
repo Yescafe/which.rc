@@ -1,7 +1,7 @@
-# Close zsh warning
+# Close oh-my-zsh prem warning
 export ZSH_DISABLE_COMPFIX=true
 
-# PATH config
+# PATH configs
 # If you come from bash you might have to change your $PATH.
 # User's bin config
 export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
@@ -55,6 +55,7 @@ alias lp7="clang++ -std=c++17"
 alias lp2a="clang++ -std=c++2a"
 
 # Aliases of proxy
+## config for clashX
 alias proxy_set="export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890; curl ipinfo.io"
 alias proxy_unset="unset http_proxy; unset https_proxy; unset all_proxy; curl ipinfo.io"
 alias proxy_prefix="https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
@@ -63,6 +64,7 @@ alias pp=proxy_prefix
 alias p=proxy_prefix
 
 # Aliases of redirecting `ls` to `lsd`
+# ref: https://github.com/Peltoche/lsd
 alias ls='lsd'
 
 # Shortcut for zsh config
@@ -70,8 +72,8 @@ alias zsh_config="vim ~/.zshrc"
 alias zsh_redeploy="source ~/.zshrc"
 
 # Config for Makefile C/C++ compiles
-alias use-gcc="export CC=/usr/local/bin/gcc-10;export CXX=/usr/local/bin/g++-10;export CMAKE_C_COMPILER=/usr/local/bin/gcc-10;export CMAKE_CXX_COMPILER=/usr/local/bin/g++-10"
-alias use-clang="export CC=/usr/bin/clang;export CXX=/usr/bin/clang++;export CMAKE_C_COMPILER=/usr/bin/local/clang;export CMAKE_CXX_COMPILER=/usr/bin/local/clang++"
+alias make_by_gcc="export CC=/usr/local/bin/gcc-10;export CXX=/usr/local/bin/g++-10;export CMAKE_C_COMPILER=/usr/local/bin/gcc-10;export CMAKE_CXX_COMPILER=/usr/local/bin/g++-10"
+alias make_by_clang="export CC=/usr/bin/clang;export CXX=/usr/bin/clang++;export CMAKE_C_COMPILER=/usr/bin/local/clang;export CMAKE_CXX_COMPILER=/usr/bin/local/clang++"
 
 # cdd - mkdir a directory and cd into it
 function cdd() {
@@ -79,8 +81,18 @@ function cdd() {
 }
 
 # Homebrew Bottle source
+# ref: https://brew.sh/
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/
 
+# Shortcur for .whichrc (sample)
+# ref: https://github.com/Yescafe/.whichrc
+alias whererc="cd ~/.whichrc"
+alias whichrc_push="~/.whichrc/push-all.sh"
+alias whichrc_pull="~/.whichrc/pull-all.sh"
+alias whichrc_reln="~/.whichrc/auto-ln.sh"
+
+# Conda init zsh
+# ref: https://www.anaconda.com/
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/ivan/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -97,7 +109,10 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 # thefuck configuration
+# ref: pip install thefuck
 eval $(thefuck --alias)
+
+# --- Original file under here --- #
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/ivan/.oh-my-zsh"
@@ -106,9 +121,8 @@ export ZSH="/Users/ivan/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 ZSH_THEME="agnoster"
-#ZSH_THEME="bira"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -168,7 +182,14 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions sudo)
+plugins=(
+    git
+    rails
+    z
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    sudo
+  )
 
 source $ZSH/oh-my-zsh.sh
 
