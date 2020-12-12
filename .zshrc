@@ -55,10 +55,12 @@ alias lp7="clang++ -std=c++17"
 alias lp2a="clang++ -std=c++2a"
 
 # Aliases of proxy
-alias global-proxy="export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
-alias proxy=global-proxy
-alias proxy-prefix="https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
-alias ppf=proxy-prefix
+alias proxy_set="export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890; curl ipinfo.io"
+alias proxy_unset="unset http_proxy; unset https_proxy; unset all_proxy; curl ipinfo.io"
+alias proxy_prefix="https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
+alias ppf=proxy_prefix
+alias pp=proxy_prefix
+alias p=proxy_prefix
 
 # Aliases of redirecting `ls` to `lsd`
 alias ls='lsd'
