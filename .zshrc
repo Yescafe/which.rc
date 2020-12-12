@@ -84,7 +84,7 @@ function cdd() {
 # ref: https://brew.sh/
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/
 
-# Shortcur for .whichrc (sample)
+# Shortcut for .whichrc (sample)
 # ref: https://github.com/Yescafe/.whichrc
 alias whererc="cd ~/.whichrc"
 alias whichrc_push="~/.whichrc/push-all.sh"
