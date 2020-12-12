@@ -1,3 +1,4 @@
 *
 !.gitignore
 !*rc
+!*.sh
