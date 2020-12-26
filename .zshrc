@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Close oh-my-zsh prem warning
 export ZSH_DISABLE_COMPFIX=true
 
@@ -7,12 +14,15 @@ export ZSH_DISABLE_COMPFIX=true
 export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
 # brew nano-5.3 config
 export PATH=/usr/local/Cellar/nano/5.3/bin:$PATH
+:<<BLOCK
 # jenv config
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 # pyenv config
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
+BLOCK
+# RVM config
 export PATH="$PATH:$HOME/.rvm/bin"
 # Rust-lang compiler config
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -80,6 +90,9 @@ alias lc="colorls -l --sd"
 alias lca="colorls -lA --sd"
 alias lct="colorls -lA --sd --tree"
 
+# iTerm2 shell integration
+#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 # Shortcut for zsh config
 alias zsh_config="vim ~/.zshrc"
 alias zsh_redeploy="source ~/.zshrc"
@@ -104,6 +117,7 @@ alias whichrc_push="~/.whichrc/push-all.sh"
 alias whichrc_pull="~/.whichrc/pull-all.sh"
 alias whichrc_reln="~/.whichrc/auto-ln.sh"
 
+:<<BLOCK
 # Conda init zsh
 # ref: https://www.anaconda.com/
 # >>> conda initialize >>>
@@ -125,6 +139,7 @@ unset __conda_setup
 alias condaa="conda activate"
 alias condad="conda deactivate"
 alias condai="conda install"
+BLOCK
 
 # thefuck configuration
 # ref: pip install thefuck
@@ -139,9 +154,9 @@ export ZSH="/Users/ivan/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
 #ZSH_THEME="agnoster"
-#ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -238,5 +253,5 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
