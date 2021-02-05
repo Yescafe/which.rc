@@ -151,6 +151,9 @@ alias condai="conda install"
 # ref: pip install thefuck
 eval $(thefuck --alias)
 
+# Typora command line
+alias typora="open -a typora"
+
 # --- Original file under here --- #
 
 # If you come from bash you might have to change your $PATH.
