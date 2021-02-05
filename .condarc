@@ -15,3 +15,4 @@ custom_channels:
 
 auto_activate_base: false
 
+ssl_verify: true
