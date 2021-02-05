@@ -10,3 +10,6 @@
 [submodule "zsh/zsh-completions"]
 	path = zsh/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions.git
+[submodule "cms-git-tools"]
+	path = cms-git-tools
+	url = https://github.com/cms-sw/cms-git-tools
