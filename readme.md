@@ -1,4 +1,4 @@
-# WHy I Can set up my environment so smootHly - [.whichRC]([Yescafe/.whichrc (github.com)](https://github.com/Yescafe/.whichrc))
+# WHy I Can set up my environment so smootHly - [.whichRC](https://github.com/Yescafe/.whichrc)
 
 这个标题是我扯的，这是一个中文。
 
