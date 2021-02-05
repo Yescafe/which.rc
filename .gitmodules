@@ -13,3 +13,6 @@
 [submodule "cms-git-tools"]
 	path = cms-git-tools
 	url = https://github.com/cms-sw/cms-git-tools
+[submodule "zsh/ohmyzsh"]
+	path = zsh/ohmyzsh
+	url = https://github.com/ohmyzsh/ohmyzsh
