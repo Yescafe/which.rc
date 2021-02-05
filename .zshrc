@@ -1,20 +1,30 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+#Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# theme: powerlevel10k
+export WHICHRC_PATH=~/.whichrc
+
 source ~/.whichrc/zsh/powerlevel10k/powerlevel10k.zsh-theme
 
-# plugins:
-# zsh-autosuggestions
-source ~/.whichrc/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-# zsh-syntax-highlighting
-source ~/.whichrc/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# zsh-completions
-fpath=(~/.whichrc/zsh/zsh-completions/src $fpath)
+plugins=(
+#  git
+  z
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  zsh-completions
+)
+
+# plugin loader
+for plugin ($plugins); do
+  if [ -f $WHICHRC_PATH/zsh/ohmyzsh/plugins/$plugin/$plugin.plugin.zsh ]; then
+    source $WHICHRC_PATH/zsh/ohmyzsh/plugins/$plugin/$plugin.plugin.zsh
+  elif [ -f $WHICHRC_PATH/zsh/$plugin/$plugin.plugin.zsh ]; then
+    source $WHICHRC_PATH/zsh/$plugin/$plugin.plugin.zsh
+  fi
+done
 
 # PATH configs
 # If you come from bash you might have to change your $PATH.
