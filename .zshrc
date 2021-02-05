@@ -48,8 +48,8 @@ export PATH=$HOME/opt/sbin:$PATH
 export PATH=/usr/local/opt/riscv-gnu-toolchain/bin:$PATH
 
 # git tools PATH and MANPATH
-export PATH=/Users/ivan/Development/repos/cms-git-tools:$PATH
-export MANPATH=/Users/ivan/Development/repos/cms-git-tools/docs/man:$MANPATH
+export PATH=~/.whichrc/cms-git-tools:$PATH
+export MANPATH=~/.whichrc/cms-git-tools/docs/man:$MANPATH
 
 # Library configuration
 export LDFLAGS="-L/usr/local/lib"
