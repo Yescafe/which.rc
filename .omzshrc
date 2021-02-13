@@ -43,6 +43,9 @@ export PATH=/usr/local/opt/riscv-gnu-toolchain/bin:$PATH
 export PATH=~/.whichrc/cms-git-tools:$PATH
 export MANPATH=~/.whichrc/cms-git-tools/docs/man:$MANPATH
 
+# Specify default editor
+export EDITOR=vim
+
 # Library configuration
 export LDFLAGS="-L/usr/local/lib"
 export CPPFLAGS="-I/usr/local/include"
@@ -109,10 +112,14 @@ alias zsh_redeploy="source ~/.zshrc"
 alias make_by_gcc="export CC=/usr/local/bin/gcc-10;export CXX=/usr/local/bin/g++-10;export CMAKE_C_COMPILER=/usr/local/bin/gcc-10;export CMAKE_CXX_COMPILER=/usr/local/bin/g++-10"
 alias make_by_clang="export CC=/usr/bin/clang;export CXX=/usr/bin/clang++;export CMAKE_C_COMPILER=/usr/bin/local/clang;export CMAKE_CXX_COMPILER=/usr/bin/local/clang++"
 
-# cdd - mkdir a directory and cd into it
-function cdd() {
-  mkdir -p "$@" && cd "$@"
+# mkcd - mkdir a directory and cd into it
+function mkcd() {
+  mkdir -p "$@" && cd "$_";
 }
+
+# File search functions
+function f() { find . -iname "*$1*" ${@:2} }
+function r() { grep "$1" ${@:2} -R . }
 
 # Homebrew Bottle source
 # ref: https://brew.sh/
@@ -229,13 +236,21 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
-    rails
-    z
-    zsh-syntax-highlighting
-    zsh-autosuggestions
-    sudo
-  )
+  git                      # git command aliases
+  rails                    # rails command aliases
+  brew                     # brew command aliases
+  vscode                   # VSCode command aliases
+  iterm2                   # iterm2 commands
+  osx                      # macOS commands
+  z                        # record recent directories
+  colored-man-pages        # adds colors to man pages
+  zsh-syntax-highlighting  # command syntax highlighting
+  zsh-autosuggestions      # record used commands
+  # sudo                     # tap double ESC to complete `sudo` prefix
+  thefuck                  # instead of 'sudo'
+  dash                     # Dash plugin
+  themes                   # change zsh themes on the go
+)
 
 source $ZSH/oh-my-zsh.sh
 
