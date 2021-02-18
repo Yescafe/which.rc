@@ -102,7 +102,7 @@ alias lca="colorls -lA --sd"
 alias lct="colorls -lA --sd --tree"
 
 # iTerm2 shell integration
-#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Shortcut for zsh config
 alias zsh_config="vim ~/.zshrc"
