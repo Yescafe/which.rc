@@ -5,23 +5,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Close oh-my-zsh prem warning
-export ZSH_DISABLE_COMPFIX=true
-
 # PATH configs
 # If you come from bash you might have to change your $PATH.
 # User's bin config
 export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
-# brew nano-5.4 config
-export PATH=/usr/local/Cellar/nano/5.4/bin:$PATH
-:<<COMMENT
-# jenv config
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-# pyenv config
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-COMMENT
+# brew nano-5.5 config
+export PATH=/usr/local/Cellar/nano/5.5/bin:$PATH
 # RVM config
 export PATH="$PATH:$HOME/.rvm/bin"
 # Rust-lang compiler config
@@ -34,8 +23,8 @@ export PATH=/Users/ivan/Library/Python/3.8/bin:$PATH
 export PATH=/Users/ivan/Library/Python/3.9/bin:$PATH
 # LLVM bin
 export PATH=/usr/local/opt/llvm/bin:$PATH
-# My shells
-export PATH=$HOME/opt/sbin:$PATH
+# .whichrc scripts
+export PATH=$HOME/.whichrc/bin:$PATH
 # RISC-V toolchain
 export PATH=/usr/local/opt/riscv-gnu-toolchain/bin:$PATH
 
