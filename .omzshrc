@@ -33,7 +33,7 @@ export PATH=~/.whichrc/cms-git-tools:$PATH
 export MANPATH=~/.whichrc/cms-git-tools/docs/man:$MANPATH
 
 # Specify default editor
-export EDITOR=vim
+export EDITOR=ec
 
 # Library configuration
 export LDFLAGS="-L/usr/local/lib"
@@ -41,9 +41,10 @@ export CPPFLAGS="-I/usr/local/include"
 
 # Aliases of editors
 alias v="vim"
-alias e="emacs -nw"
+alias e="ec"
 alias a="atom"
 alias s="code"
+alias m="mate"
 
 # Aliases of gcc/clang
 alias gcc="gcc-10"
