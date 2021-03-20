@@ -18,7 +18,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # MySQL server config
 export PATH=/usr/local/mysql/bin:$PATH
 # System Python 3.8 bin
-export PATH=/Users/ivan/Library/Python/3.8/bin:$PATH
+# export PATH=/Users/ivan/Library/Python/3.8/bin:$PATH
 # Python 3.9 bin
 export PATH=/Users/ivan/Library/Python/3.9/bin:$PATH
 # LLVM bin
@@ -33,18 +33,12 @@ export PATH=~/.whichrc/cms-git-tools:$PATH
 export MANPATH=~/.whichrc/cms-git-tools/docs/man:$MANPATH
 
 # Specify default editor
-export EDITOR=ec
+export EDITOR=vim
+
 
 # Library configuration
 export LDFLAGS="-L/usr/local/lib"
 export CPPFLAGS="-I/usr/local/include"
-
-# Aliases of editors
-alias v="vim"
-alias e="ec"
-alias a="atom"
-alias s="code"
-alias m="mate"
 
 # Aliases of gcc/clang
 alias gcc="gcc-10"
@@ -92,7 +86,9 @@ alias lca="colorls -lA --sd"
 alias lct="colorls -lA --sd --tree"
 
 # iTerm2 shell integration
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+if [[ -z $EMACS ]]; then
+  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+fi
 
 # Shortcut for zsh config
 alias zsh_config="vim ~/.zshrc"
@@ -121,6 +117,10 @@ alias whererc="cd ~/.whichrc"
 alias whichrc_push="~/.whichrc/push-all.sh"
 alias whichrc_pull="~/.whichrc/pull-all.sh"
 alias whichrc_reln="~/.whichrc/auto-ln.sh"
+
+# More git aliases
+alias gdh="git diff HEAD"
+alias gdh1="git diff HEAD~1"
 
 # Conda init zsh
 # ref: https://www.anaconda.com/
