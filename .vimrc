@@ -22,7 +22,7 @@ set backspace=eol,start,indent
 " 双行显示状态
 set laststatus=2
 " 80 列高亮
-set colorcolumn=80
+"set colorcolumn=80
 " 高亮所在行
 set cursorline
 " 自动折行
@@ -34,11 +34,12 @@ filetype plugin indent on
 
 " keymaps
 " ESC
-imap jj <Esc>
-imap kk <Esc>
 imap kj <Esc>
 " leader
-let mapleader=","
+let mapleader=" "
+map <leader>w :w<CR>
+map <leader>wq :wq<CR>
+map <leader>qq :q!<CR>
 
 " 主题 tender
 " git clone https://github.com/jacoborus/tender.vim ~/.vim/pack/vendor/start/tendor
@@ -46,16 +47,16 @@ let mapleader=","
 " 24位真彩色信息请参考 https://gist.github.com/XVilka/8346728
 set termguicolors
 " 设置主题
-color tender
+"color tender
 " tender 默认背景色是一种亮灰色，晚上特别不舒服，改成纯黑
-highlight Normal guibg=#000001
+"highlight Normal guibg=#000001
 " 改背景后选中区域无法高亮，也得调一下
-highlight Visual guibg=#323232
+"highlight Visual guibg=#323232
 " 灰色的状态栏很扎眼，调一下
-highlight StatusLine guibg=#444444 guifg=#b3deef
+"highlight StatusLine guibg=#444444 guifg=#b3deef
 " vim 的 terminal 状态栏需要单独配置
-highlight StatusLineTerm guibg=#444444 guifg=#b3deef
-highlight StatusLineTermNC guibg=#444444 guifg=#999999
+"highlight StatusLineTerm guibg=#444444 guifg=#b3deef
+"highlight StatusLineTermNC guibg=#444444 guifg=#999999
 
 " nerdtree
 " git clone https://github.com/scrooloose/nerdtree ~/.vim/pack/vendor/start/nerdtree

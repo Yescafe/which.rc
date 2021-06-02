@@ -5,6 +5,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+if [[ ! -z "$TMUX" ]]; then
+  TERM=screen-256color
+fi
+
 # PATH configs
 # If you come from bash you might have to change your $PATH.
 # User's bin config
@@ -18,7 +22,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # MySQL server config
 export PATH=/usr/local/mysql/bin:$PATH
 # System Python 3.8 bin
-# export PATH=/Users/ivan/Library/Python/3.8/bin:$PATH
+export PATH=/Users/ivan/Library/Python/3.8/bin:$PATH
 # Python 3.9 bin
 export PATH=/Users/ivan/Library/Python/3.9/bin:$PATH
 # LLVM bin
@@ -41,8 +45,8 @@ export LDFLAGS="-L/usr/local/lib"
 export CPPFLAGS="-I/usr/local/include"
 
 # Aliases of gcc/clang
-alias gcc="gcc-10"
-alias g++="g++-10"
+alias gcc="gcc-11"
+alias g++="g++-11"
 alias gpp="g++"
 alias lcc="clang"
 alias lpp="clang++"
@@ -109,7 +113,7 @@ function r() { grep "$1" ${@:2} -R . }
 
 # Homebrew Bottle source
 # ref: https://brew.sh/
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/
+#export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/
 
 # Shortcut for .whichrc (sample)
 # ref: https://github.com/Yescafe/.whichrc
@@ -150,6 +154,11 @@ eval $(thefuck --alias)
 
 # Typora command line
 alias typora="open -a typora"
+
+# backgroud with nohup
+nh () {
+  nohup $* > /dev/null &
+}
 
 # --- Original file under here --- #
 
