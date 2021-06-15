@@ -67,7 +67,7 @@ alias lp3="clang++ -std=c++03"
 alias lp1="clang++ -std=c++11"
 alias lp4="clang++ -std=c++14"
 alias lp7="clang++ -std=c++17"
-alias lp2a="clang++ -std=c++2a"
+alias lp20="clang++ -std=c++20"   # LLVM12
 
 # Aliases of proxy
 ## config for clashX
