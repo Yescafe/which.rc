@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+
+import os
+
+def run(command):
+    print('%', command)
+    return os.system(command)
+
+problem_id = os.getcwd().split('_')[-1]
+run('git pull')
+run('git status')
+run('git add -A')
+run('git commit -m "Yescafe finish %s"' % problem_id)
+
