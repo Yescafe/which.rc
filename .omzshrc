@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
 if [[ ! -z "$TMUX" ]]; then
   TERM=screen-256color
@@ -31,6 +31,8 @@ export PATH=/usr/local/opt/llvm/bin:$PATH
 export PATH=$HOME/.whichrc/bin:$PATH
 # RISC-V toolchain
 export PATH=/usr/local/opt/riscv-gnu-toolchain/bin:$PATH
+# JDK 16
+export PATH=$HOME/opt/jdk-16.0.2.jdk/Contents/Home/bin:$PATH
 
 # git tools PATH and MANPATH
 export PATH=~/.whichrc/cms-git-tools:$PATH
@@ -38,7 +40,6 @@ export MANPATH=~/.whichrc/cms-git-tools/docs/man:$MANPATH
 
 # Specify default editor
 export EDITOR=vim
-
 
 # Library configuration
 export LDFLAGS="-L/usr/local/lib"
@@ -160,6 +161,9 @@ nh () {
   nohup $* > /dev/null &
 }
 
+# run Emacs client in the background
+alias e="nh ec"
+
 # --- Original file under here --- #
 
 # If you come from bash you might have to change your $PATH.
@@ -172,7 +176,9 @@ export ZSH="/Users/ivan/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="spaceship"
+ZSH_THEME="miner"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -240,7 +246,7 @@ plugins=(
   brew                     # brew command aliases
   vscode                   # VSCode command aliases
   iterm2                   # iterm2 commands
-  osx                      # macOS commands
+  macos                    # macOS commands
   z                        # record recent directories
   colored-man-pages        # adds colors to man pages
   zsh-syntax-highlighting  # command syntax highlighting
@@ -280,4 +286,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
