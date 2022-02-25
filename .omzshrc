@@ -1,13 +1,21 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
 #if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 #  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 #fi
 
 if [[ ! -z "$TMUX" ]]; then
-  TERM=screen-256color
+  TERM=xterm-256color
 fi
+alias tmux='TERM=xterm-256color tmux'
 
 # PATH configs
 # If you come from bash you might have to change your $PATH.
@@ -33,6 +41,8 @@ export PATH=$HOME/.whichrc/bin:$PATH
 export PATH=/usr/local/opt/riscv-gnu-toolchain/bin:$PATH
 # JDK 16
 export PATH=$HOME/opt/jdk-16.0.2.jdk/Contents/Home/bin:$PATH
+# doom
+export PATH=$HOME/.emacs.d/bin:$PATH
 
 # git tools PATH and MANPATH
 export PATH=~/.whichrc/cms-git-tools:$PATH
@@ -40,6 +50,9 @@ export MANPATH=~/.whichrc/cms-git-tools/docs/man:$MANPATH
 
 # Specify default editor
 export EDITOR=vim
+
+# vim
+alias v=vim
 
 # Library configuration
 export LDFLAGS="-L/usr/local/lib"
@@ -78,6 +91,7 @@ alias proxy_prefix="https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.
 alias ppf=proxy_prefix
 alias pp=proxy_prefix
 alias p=proxy_prefix
+export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
 
 # Aliases of redirecting `ls` to `lsd`
 # ref: https://github.com/Peltoche/lsd
@@ -100,13 +114,14 @@ alias zsh_config="vim ~/.zshrc"
 alias zsh_redeploy="source ~/.zshrc"
 
 # Config for Makefile C/C++ compiles
-alias make_by_gcc="export CC=/usr/local/bin/gcc-10;export CXX=/usr/local/bin/g++-10;export CMAKE_C_COMPILER=/usr/local/bin/gcc-10;export CMAKE_CXX_COMPILER=/usr/local/bin/g++-10"
+alias make_by_gcc="export CC=/usr/local/bin/gcc-11;export CXX=/usr/local/bin/g++-11;export CMAKE_C_COMPILER=/usr/local/bin/gcc-11;export CMAKE_CXX_COMPILER=/usr/local/bin/g++-11"
 alias make_by_clang="export CC=/usr/bin/clang;export CXX=/usr/bin/clang++;export CMAKE_C_COMPILER=/usr/bin/local/clang;export CMAKE_CXX_COMPILER=/usr/bin/local/clang++"
 
 # mkcd - mkdir a directory and cd into it
 function mkcd() {
   mkdir -p "$@" && cd "$_";
 }
+alias mcd=mkcd
 
 # File search functions
 function f() { find . -iname "*$1*" ${@:2} }
@@ -128,17 +143,16 @@ alias gdh="git diff HEAD"
 alias gdh1="git diff HEAD~1"
 
 # Conda init zsh
-# ref: https://www.anaconda.com/
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/ivan/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/ivan/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/ivan/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/ivan/opt/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/Users/ivan/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/ivan/opt/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/ivan/opt/anaconda3/bin:$PATH"
+        export PATH="/Users/ivan/opt/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -155,6 +169,7 @@ eval $(thefuck --alias)
 
 # Typora command line
 alias typora="open -a typora"
+alias tpr=typora
 
 # backgroud with nohup
 nh () {
@@ -176,9 +191,10 @@ export ZSH="/Users/ivan/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 #ZSH_THEME="spaceship"
-ZSH_THEME="miner"
+#ZSH_THEME="robbyrussell"
+#ZSH_THEME="miner"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -242,7 +258,7 @@ ZSH_THEME="miner"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git                      # git command aliases
-  rails                    # rails command aliases
+  # rails                    # rails command aliases
   brew                     # brew command aliases
   vscode                   # VSCode command aliases
   iterm2                   # iterm2 commands
@@ -251,8 +267,8 @@ plugins=(
   colored-man-pages        # adds colors to man pages
   zsh-syntax-highlighting  # command syntax highlighting
   zsh-autosuggestions      # record used commands
-  # sudo                     # tap double ESC to complete `sudo` prefix
-  thefuck                  # instead of 'sudo'
+  sudo                     # tap double ESC to complete `sudo` prefix
+  # thefuck                  # instead of 'sudo'
   dash                     # Dash plugin
   themes                   # change zsh themes on the go
 )
@@ -287,3 +303,8 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
