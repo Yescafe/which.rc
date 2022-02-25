@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+import os
+import sys
+
+
+def cmd(instr: str):
+    print('$ ' + instr)
+    return os.system(instr)
+
+
+def compile(filename: str):
+    if filename.split('.')[-1] != 'hs':
+        print(filename + ' is not a Haskell source file!')
+        return -1
+    return cmd('ghc -o ' + filename[:-3] + ' ' + filename)
+
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print('Usage: ghco *.hs [...]', file=sys.stderr)
+        exit(-1)
+    elif len(sys.argv) == 2:
+        filename = sys.argv[1]
+        if filename == 'clean':
+            files = os.listdir()
+            for filename in files:
+                if filename.split('.')[-1] == 'hs':
+                    continue
+                cmd('rm -f ' + filename)
+        else:
+            exit(compile(filename))
+    else:
+        for filename in sys.argv[1:]:
+            compile(filename)
