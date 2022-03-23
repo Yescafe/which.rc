@@ -18,4 +18,4 @@
 	url = https://github.com/ohmyzsh/ohmyzsh
 [submodule ".vim"]
 	path = .vim
-	url = ./.vim
+	url = https://github.com/Yescafe/vim
