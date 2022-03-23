@@ -8,27 +8,23 @@ def cmd(instr: str):
     return os.system(instr)
 
 
-def compile(filename: str):
+def compile(filename: str, param: str = ""):
     if filename.split('.')[-1] != 'hs':
         print(filename + ' is not a Haskell source file!')
         return -1
-    return cmd('ghc -o ' + filename[:-3] + ' ' + filename)
+    return cmd('ghc ' + param + ' -o ' + filename[:-3] + ' ' + filename)
 
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print('Usage: ghco *.hs [...]', file=sys.stderr)
+        print('Usage: ghco [-*] *.hs [...]', file=sys.stderr)
         exit(-1)
-    elif len(sys.argv) == 2:
-        filename = sys.argv[1]
-        if filename == 'clean':
-            files = os.listdir()
-            for filename in files:
-                if filename.split('.')[-1] == 'hs':
-                    continue
-                cmd('rm -f ' + filename)
+
+    filename, param = '', ''
+    for arg in sys.argv[1:]:
+        if arg[-3:] == '.hs':
+            filename = arg
         else:
-            exit(compile(filename))
-    else:
-        for filename in sys.argv[1:]:
-            compile(filename)
+            param += arg + ' '
+
+    compile(filename, param)
